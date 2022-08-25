@@ -1,0 +1,11 @@
+image: scheibling/gitpod-wordpress
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+
+tasks:
+  - init: |
+      cd public && wp core download
+      gp await-port 3306
+    command: wp server --host=0.0.0.0 --docroot=./public --port=8080
